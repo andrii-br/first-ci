@@ -1,8 +1,9 @@
-
 name: Deploy-to-AWS-EC2
+
 on:
   push:
-    branches: [ "main" ] #Запускать при пуше в main
+    branches:
+        - main #Запускать при пуше в main
 
 jobs:
   deploy:
@@ -20,6 +21,6 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          echo "Успешное подключение к серверу"
+            echo "Успешное подключение к серверу"
           EOF
           
