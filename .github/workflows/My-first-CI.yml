@@ -11,11 +11,11 @@ jobs:
 
     steps:
       - name: Copy repository
-      - uses: actions/checkout@v4 #clon repo
+        uses: actions/checkout@v4 #clon repo
 
       - name: SSH Connection
         run: |
-            echo ""${{ sicrets.EC2_KEY }}" >> private-key.pem
+            echo ""${{ secrets.EC2_KEY }}" >> private_key.pem
             chmod 600 private-key.pem
             
       - name: Deploy to EC2
