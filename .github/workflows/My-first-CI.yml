@@ -13,9 +13,13 @@ jobs:
       - name: Copy repository
         uses: actions/checkout@v4 #clon repo
 
+      - name: Debug Secrets
+        run: echo "EC2_KEY length:$(echo -n '${{ secrets.EC2_KEY }}' | wc -c)"
+
+
       - name: SSH Connection
         run: |
-            echo ""${{ secrets.EC2_KEY }}" >> private_key.pem
+            echo "${{ secrets.EC2_KEY }}" >> private_key.pem
             chmod 600 private_key.pem
             
       - name: Deploy to EC2
