@@ -16,7 +16,7 @@ jobs:
       - name: SSH Connection
         run: |
             echo ""${{ secrets.EC2_KEY }}" >> private_key.pem
-            chmod 600 private-key.pem
+            chmod 600 private_key.pem
             
       - name: Deploy to EC2
         run: |
