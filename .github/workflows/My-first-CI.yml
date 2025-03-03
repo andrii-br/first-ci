@@ -1,0 +1,25 @@
+
+name: Deploy-to-AWS-EC2
+on:
+  push:
+    branches: [ "main" ] #Запускать при пуше в main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy repository
+      - uses: actions/checkout@v4 #clon repo
+
+      - name: SSH Connection
+        run: |
+            echo ""${{ sicrets.EC2_KEY }}" >> private-key.pem
+            chmod 600 private-key.pem
+            
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          echo "Успешное подключение к серверу"
+          EOF
+          
