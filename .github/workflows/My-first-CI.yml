@@ -23,7 +23,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} <<EOF
             git clone https://github.com/andrii-br/first-ci.git ~/app
             git pull origin main
-            docker compose down
+            docker-compose down
           EOF
         
           
