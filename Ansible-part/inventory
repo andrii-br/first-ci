@@ -1,2 +1,0 @@
-[aws]
-ec2 ansible_host=3.67.71.170 ansible_user=ubuntu ansible_private_key_file=~/.ssh/andrey-key-frankfurt.pem
