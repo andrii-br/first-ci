@@ -6,6 +6,26 @@ on:
         - main #Запускать при пуше в main
 
 jobs:
+  test_before_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up docker
+        run: docker/setup-buildx-action@v2
+        
+      - name: Build and run docker-compose
+        run : |
+            docker-compose up --build
+            sleep 10
+            docker ps
+
+      - name: Run helth check
+        run: |
+           curl -f http://localhost:5000 || exit 1
+  
   deploy:
     runs-on: ubuntu-latest
 
