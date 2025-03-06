@@ -27,6 +27,7 @@ jobs:
            curl -f http://localhost:5000 || exit 1
   
   deploy:
+    needs: test_before_deploy
     runs-on: ubuntu-latest
 
     steps:
