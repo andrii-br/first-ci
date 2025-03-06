@@ -14,16 +14,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up docker
-        run: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2
         
       - name: Build and run docker-compose
         run : |
-            docker-compose up --build
+            docker-compose up -d --build
             sleep 10
             docker ps
 
       - name: Run helth check
         run: |
+           echo "Waiting for the app to be available..."
+           sleep 5
            curl -f http://localhost:5000 || exit 1
   
   deploy:
