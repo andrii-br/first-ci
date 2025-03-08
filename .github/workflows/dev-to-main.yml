@@ -37,12 +37,13 @@ jobs:
       - name: Merge dev in main
         uses: actions/checkout@v4
         
-      - name: Mege dev -> main
+      - name: Merge dev -> main
         run: |
-          git config --global user.email "your-email@example.com"
-          git config --global user.name "github-actions"
-          git fetch origin
-          git checkout main
-          git pull origin main
-          git merge --no-ff dev -m "Auto-merge dev into main"
-          git push origin main
+            git config --global user.email "github-actions@github.com"
+            git config --global user.name "github-actions"
+            git fetch origin
+            git checkout main
+            git pull origin main
+            git merge dev --allow-unrelated-histories
+            git push origin main
+
